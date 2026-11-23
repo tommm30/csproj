@@ -1,0 +1,35 @@
+<!html>
+<head>
+    <title>My T-shirt logo</title>
+    <link rel="stylesheet" href='summative.css'>
+</head>
+<body>
+
+    <div class="colores">
+        <div class="color grey" onclick="document.body.style.backgroundColor='grey'"></div>
+        <div class="color pink" onclick="document.body.style.backgroundColor='pink'"></div>
+        <div class="color blue" onclick="document.body.style.backgroundColor='lightblue'"></div>
+        <div class="color black" onclick="document.body.style.backgroundColor='black'"></div>
+    </div>
+
+    <div class="camisetta">
+        <div class="color grey" onclick="document.getElementById('tshirt').src='images/grey.jpg'"></div>
+        <div class="color white-shirt" onclick="document.getElementById('tshirt').src='images/white.png'"></div>
+        <div class="color blue-shirt" onclick="document.getElementById('tshirt').src='images/shirt.jpg'"></div>
+    </div>
+
+    <div class="shirt">
+        <img id="tshirt" src="images/black.jpg">
+        <img id="logos" src="images/logo1.jpg">
+    </div>
+
+    <div class="logo">
+        <div class="logoss" onclick="document.getElementById('logos').src='images/logo1.jpg'">Logo 1</div>
+        <div class="logoss" onclick="document.getElementById('logos').src='images/logo2.jpg'">Logo 2</div>
+        <div class="logoss" onclick="document.getElementById('logos').src='images/logo3.jpg'">Logo 3</div>
+    </div>
+
+    <p>My T-shirt logo</p>
+
+</body>
+</html>
