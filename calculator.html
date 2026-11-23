@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simplified Calculator Template</title>
+    <link rel="stylesheet" href="calculator.css">
+</head>
+<body>
+
+    <div class="skin-switcher">
+        <button onclick="document.body.className='skin-1'">Skin 1</button>
+        <button onclick="document.body.className='skin-2'">Skin 2</button>
+        <button onclick="document.body.className='skin-3'">Skin 3</button>
+        <button onclick="document.body.className='skin-4'">Skin 4</button>
+    </div>
+
+    <div class="calculator">
+        <div id="number">
+            <div id="nftext">0</div>
+        </div>
+
+        <div class="grid">
+            <button>⌫</button>
+            <button onclick="document.getElementById('nftext').innerHTML='0'">AC</button>
+            <button>%</button>
+            <button onclick="document.getElementById('nftext').innerHTML='÷'">÷</button>
+            <button onclick="document.getElementById('nftext').innerHTML='7'">7</button>
+            <button onclick="document.getElementById('nftext').innerHTML='8'">8</button>
+            <button onclick="document.getElementById('nftext').innerHTML='9'">9</button>
+            <button onclick="document.getElementById('nftext').innerHTML='×'">×</button>
+            <button onclick="document.getElementById('nftext').innerHTML='4'">4</button>
+            <button onclick="document.getElementById('nftext').innerHTML='5'">5</button>
+            <button onclick="document.getElementById('nftext').innerHTML='6'">6</button>
+            <button onclick="document.getElementById('nftext').innerHTML='−'">−</button>
+            <button onclick="document.getElementById('nftext').innerHTML='1'">1</button>
+            <button onclick="document.getElementById('nftext').innerHTML='2'">2</button>
+            <button onclick="document.getElementById('nftext').innerHTML='3'">3</button>
+            <button onclick="document.getElementById('nftext').innerHTML='+'">+</button>
+            <div class="bottom-row">
+                <button onclick="document.getElementById('nftext').innerHTML='x²'">x²</button>
+                <button onclick="document.getElementById('nftext').innerHTML='0'">0</button>
+                <button>.</button>
+                <button onclick="document.getElementById('nftext').innerHTML='='">=</button>
+            </div>
+        </div>
+    </div>
+<script> 
+    var total = 0;
+    var operator = "";
+    var number = 0;
+    var currentInput = "0";
+
+    window.onclick = function(event) {
+        if (event.target.tagName == 'BUTTON') {
+            var val = event.target.innerHTML;
+            var display = document.getElementById('nftext');
+
+            if (val == 'AC') {
+                total = 0;
+                operator = "";
+                number = 0;
+                currentInput = "0";
+                display.innerHTML = "0";
+            }
+
+            if (val=='0' || val=='1' || val=='2' || val=='3' || val=='4' || val== '5' || val=='6' || val=='7' || val=='8' || val=='9') {
+                if (currentInput.length < 8) {
+                    if (currentInput=="0") {
+                        currentInput = val;
+                    } else {
+                        currentInput = currentInput + val;
+                    }
+                    if (operator == "") {
+                        total = Number(currentInput);
+                        display.innerHTML = currentInput;
+                    } else {
+                        number = Number(currentInput);
+                        display.innerHTML = currentInput;
+                    }
+                }
+            }
+            if (val=='.') {
+                if (!currentInput.includes('.')) {
+                    currentInput = currentInput + '.';
+                    display.innerHTML = currentInput;
+                }
+            }
+            if (val=='%') {
+                if (operator == "") {
+                    total = total / 100;
+                    currentInput = String(total);
+                    display.innerHTML = currentInput;
+                } else {
+                    number = number / 100;
+                    currentInput = String(number);
+                    display.innerHTML = currentInput;
+                }
+            }
+            if (val=='+') {
+                operator = "plus";
+                currentInput = "0";
+            }
+            if (val=='−') {
+                operator = "minus";
+                currentInput = "0";
+            }
+            if (val=='×') {
+                operator ="multiply";
+                currentInput = "0";
+            }
+            if (val=='÷') {
+                operator ="divide";
+                currentInput = "0";
+            }
+            if (val=='x²') {
+                operator ='square';
+            }
+            if (val=='⌫') {
+                if (currentInput.length > 1) {
+                    currentInput = currentInput.slice(0, -1);
+                } else {
+                    currentInput = "0";
+                }
+                if (operator == "") {
+                    total= Number(currentInput);
+                    display.innerHTML = currentInput;
+                } else {
+                    number = Number(currentInput);
+                    display.innerHTML =currentInput;
+                }
+            }
+            if (val == '=') {
+                if (operator == 'plus') {
+                    total = total + number;
+                }
+                if (operator == 'minus') {
+                    total = total - number;
+                }
+                if (operator == 'multiply') {
+                    total = total * number;
+                }
+                if (operator == 'divide') {
+                    total = total / number;
+                }
+                if (operator == 'square') {
+                    total = total * total;
+                }
+                currentInput = String(total);
+                display.innerHTML = total;
+                number = 0;
+                operator = "";
+            }
+        }
+    };
+</script>  
+</body>
+</html>
